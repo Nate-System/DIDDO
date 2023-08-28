@@ -5,6 +5,9 @@ import pandas as pd
 CC = 1
 CS = pd.read_csv(r'C:\Users\ndixon\Projects\DIDDO\CHARACTERLOAD.csv', index_col = 0)
 
+print("Hello")
+#test github connection
+
 def Startup(CC):
     print('\033[H\033[J', end='')
     print("Who is playing the game right now? Enter 'New' to set up a new character.")
