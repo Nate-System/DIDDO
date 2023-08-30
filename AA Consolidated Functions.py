@@ -17,23 +17,24 @@ def Startup(CC):
         if X in CS["NAME"].values:
             CCC = CS[CS['NAME'] == X].index
             CC = CCC[0]
-            return(CC)
             if CS.loc[CC,"PIN"] == 9999999999:
                 print('\033[H\033[J', end='')
                 print("Welcome back, " + CS.loc[CC,"NAME"] + ". We're glad you're here.")
                 CS.to_csv(r'C:\Users\ndixon\Projects\DIDDO\CHARACTERLOAD.csv')
-                break
+                return(CC)
             else:
-                if CS.loc[CC,"PIN"] == int(input("What is your PIN? ")):
+                print('\033[H\033[J', end='')
+                if str(CS.loc[CC,"PIN"]) == str(input("What is your PIN? ")):
                     print('\033[H\033[J', end='')
                     print("Welcome back " + CS.loc[CC,"NAME"] + ", we're glad you're here.")
                     CS.to_csv(r'C:\Users\ndixon\Projects\DIDDO\CHARACTERLOAD.csv')
-                    break
+                    return(CC)
                 else: 
                     print('\033[H\033[J', end='')
                     print("We're sorry, that is the wrong PIN for " + CS.loc[CC,"NAME"] + ".")
                     continue
         if X == "New":
+            print('\033[H\033[J', end='')
             Y = str(input("What would you like to be called? "))
             if Y == "New":
                 print('\033[H\033[J', end='')
@@ -46,13 +47,12 @@ def Startup(CC):
             else:
                 NC = [Y, 9999999999, 0, "they", "them", "their", "theirs", "alters"]
                 CC = len(CS)
-                return(CC)
                 CS.loc[len(CS)] = NC
                 print('\033[H\033[J', end='')
                 print('Hello ' + str(CS.loc[CC,"NAME"]), ", we're so glad you're here!. \nTo set up more options such as a PIN(to protect your account), pronouns, age, etc, please head to Character Setup.\n\n")
 #once startup instructions and game tutorial are created, add that here (possibly with the option to bypass it) as new players may not know how to play the game.
                 CS.to_csv(r'C:\Users\ndixon\Projects\DIDDO\CHARACTERLOAD.csv')
-                break
+                return(CC)
         else:
             print('\033[H\033[J', end='')
             print("We don't show anyone with that name right now. Here are all of the players currently set up: \n\n")
@@ -250,7 +250,7 @@ def Triggers(): #only call Character Setup via the CharacterSetup function (via 
             continue
 
 CC = Startup(CC) #this is how to run the Startup function so that the CC in the function is played back to the global CC variable.
-CharacterPINentry()
+#CharacterPINentry()
 
 print(CS)
 print(CC)
