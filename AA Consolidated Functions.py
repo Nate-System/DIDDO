@@ -2,7 +2,7 @@
 #python "C:\Users\ndixon\Projects\DIDDO\AA Consolidated Functions.py"
 
 import pandas as pd
-CC = 1
+CC = 0
 CS = pd.read_csv(r'C:\Users\ndixon\Projects\DIDDO\CHARACTERLOAD.csv', index_col = 0)
 
 def Switch(CC):
@@ -99,24 +99,15 @@ def CharacterSetup(): #only call Character Setup via the CharacterPINentry funct
                 print('Hello ' + str(CS.loc[CC,"NAME"]), ", we're so glad you're here!.\n\n")
             continue
         elif X == ('PIN'):
-            #how to resolve if someone enters anything other than numbers
             if CS.loc[CC,"PIN"] == 9999999999:
                 print('\033[H\033[J', end='')
-                Y = int(input("What would you like to change your PIN to? "))
-                if Y == int(input("Please re-enter PIN ")):
-                    CS.loc[CC,"PIN"] = Y
+                Y = input("What would you like to set your PIN to? ")
+                if Y.isdigit() == False:
                     print('\033[H\033[J', end='')
-                    print("PIN successfully changed to " + str(CS.loc[CC,"PIN"]) + "\n\n")
+                    print("We're so sorry, your PIN must be a whole number. Words, letters, and special characters are not allowed.\n\n")
                     continue
                 else:
-                    print('\033[H\033[J', end='')
-                    print("PIN does not match, please try again.\n\n")
-                    continue
-            else:
-                print('\033[H\033[J', end='')
-                if CS.loc[CC,"PIN"] == int(input("What is your current PIN?")):
-                    Y = int(input("What would you like to change your PIN to?"))
-                    if Y == int(input("Please re-enter PIN")):
+                    if str(Y) == str(input("Please re-enter PIN: ")):
                         CS.loc[CC,"PIN"] = Y
                         print('\033[H\033[J', end='')
                         print("PIN successfully changed to " + str(CS.loc[CC,"PIN"]) + "\n\n")
@@ -125,17 +116,29 @@ def CharacterSetup(): #only call Character Setup via the CharacterPINentry funct
                         print('\033[H\033[J', end='')
                         print("PIN does not match, please try again.\n\n")
                         continue
+            else:
+                print('\033[H\033[J', end='')
+                if str(CS.loc[CC,"PIN"]) == str(input("What is your current PIN?")):
+                    Y = input("What would you like to set your PIN to? ")
+                    if Y.isdigit() == False:
+                        print('\033[H\033[J', end='')
+                        print("We're so sorry, your PIN must be a whole number. Words, letters, and special characters are not allowed.\n\n")
+                        continue
+                    else:
+                        if str(Y) == str(input("Please re-enter PIN: ")):
+                            CS.loc[CC,"PIN"] = Y
+                            print('\033[H\033[J', end='')
+                            print("PIN successfully changed to " + str(CS.loc[CC,"PIN"]) + "\n\n")
+                            continue
+                        else:
+                            print('\033[H\033[J', end='')
+                            print("PIN does not match, please try again.\n\n")
+                            continue
                 else:
                     print('\033[H\033[J', end='')
                     print("Incorrect PIN, please try again.\n\n")
                     continue
         elif X == ('AGE'):
-            #how to resolve if someone enters anything other than numbers
-            #print('\033[H\033[J', end='')
-            #CS.loc[CC,"AGE"] = int(input("What is you age? If your age sometimes changes, we generally recommend picking the age you are most likely to be when using this game. You can always change this if you need to.\n"))
-            #print('\033[H\033[J', end='')
-            #print("What a great age!\n\n")
-            #continue
             print('\033[H\033[J', end='')
             A = input("What is you age? If your age sometimes changes, we generally recommend picking the age you are most likely to be when using this game. You can always change this if you need to.\n")
             if A.isdigit() == False:
@@ -143,6 +146,7 @@ def CharacterSetup(): #only call Character Setup via the CharacterPINentry funct
                 print("We're so sorry, ages must be a whole number. Words, letters, and special characters are not allowed.\n\n")
                 continue
             else:
+                CS.loc[CC,"AGE"] = A
                 print('\033[H\033[J', end='')
                 print("What a great age!\n\n")
                 continue
@@ -259,8 +263,9 @@ def Triggers(): #only call Character Setup via the CharacterSetup function (via 
             print("Invalid entry. Please try again.\n\n")
             continue
 
-CC = Switch(CC) #this is how to run the Switch/Startup function so that the CC in the function is played back to the global CC variable.
+#CC = Switch(CC) #this is how to run the Switch/Startup function so that the CC in the function is played back to the global CC variable.
 #CharacterPINentry()
+CharacterSetup()
 
 print(CS)
 print(CC)
