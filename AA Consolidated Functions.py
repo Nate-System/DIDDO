@@ -1,6 +1,9 @@
 #CC is Current Character.
 #python "C:\Users\ndixon\Projects\DIDDO\AA Consolidated Functions.py"
 
+test
+
+
 import pandas as pd
 CC = 1
 CS = pd.read_csv(r'C:\Users\ndixon\Projects\DIDDO\CHARACTERLOAD.csv', index_col = 0)
