@@ -1,5 +1,5 @@
-## DIDDO
-# A game for those with DID
+# DIDDO
+## A game for those with DID
 
 This game is not for everyone.
 
