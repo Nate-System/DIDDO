@@ -1,5 +1,5 @@
 ## DIDDO
-#A game for those with DID
+# A game for those with DID
 This game is not for everyone.
 
 This game is for those who have DID (Dissociative Identity Disorder) and are looking for creative ways to get to know their parts/alters and build better internal relationships. 
