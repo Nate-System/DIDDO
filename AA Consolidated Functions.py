@@ -5,7 +5,7 @@ import pandas as pd
 CC = 1
 CS = pd.read_csv(r'C:\Users\ndixon\Projects\DIDDO\CHARACTERLOAD.csv', index_col = 0)
 
-def Startup(CC):
+def Switch(CC):
     print('\033[H\033[J', end='')
     print("Who is playing the game right now? Enter 'New' to set up a new character.")
     while True:
@@ -131,11 +131,21 @@ def CharacterSetup(): #only call Character Setup via the CharacterPINentry funct
                     continue
         elif X == ('AGE'):
             #how to resolve if someone enters anything other than numbers
+            #print('\033[H\033[J', end='')
+            #CS.loc[CC,"AGE"] = int(input("What is you age? If your age sometimes changes, we generally recommend picking the age you are most likely to be when using this game. You can always change this if you need to.\n"))
+            #print('\033[H\033[J', end='')
+            #print("What a great age!\n\n")
+            #continue
             print('\033[H\033[J', end='')
-            CS.loc[CC,"AGE"] = int(input("What is you age? If your age sometimes changes, we generally recommend picking the age you are most likely to be when using this game. You can always change this if you need to.\n"))
-            print('\033[H\033[J', end='')
-            print("What a great age!\n\n")
-            continue
+            A = input("What is you age? If your age sometimes changes, we generally recommend picking the age you are most likely to be when using this game. You can always change this if you need to.\n")
+            if A.isdigit() == False:
+                print('\033[H\033[J', end='')
+                print("We're so sorry, ages must be a whole number. Words, letters, and special characters are not allowed.\n\n")
+                continue
+            else:
+                print('\033[H\033[J', end='')
+                print("What a great age!\n\n")
+                continue
         elif X == ('PRONOUNS'):
             print('\033[H\033[J', end='')
             print("What are your pronouns?")
@@ -249,7 +259,7 @@ def Triggers(): #only call Character Setup via the CharacterSetup function (via 
             print("Invalid entry. Please try again.\n\n")
             continue
 
-CC = Startup(CC) #this is how to run the Startup function so that the CC in the function is played back to the global CC variable.
+CC = Switch(CC) #this is how to run the Switch/Startup function so that the CC in the function is played back to the global CC variable.
 #CharacterPINentry()
 
 print(CS)
